@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "latest",
+    "axios": "^1.5.1",
+    "cheerio": "^1.0.0-rc.12",
+    "next": "^13.4.2",
     "react": "latest",
     "react-dom": "latest",
     "react-responsive-carousel": "^3.2.23"
