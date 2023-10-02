@@ -1,4 +1,4 @@
-import { Product,PriceHistoryItem } from "@/types";
+import { Product,PriceHistoryItem } from "../types";
 
 
 const Notification = {
