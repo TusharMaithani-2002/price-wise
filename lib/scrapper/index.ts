@@ -75,8 +75,6 @@ export async function scrapeAmazonProduct(url:string) {
 
         return data;
 
-        // {title,currentPrice,originalPrice,outOfStock,imageUrls,currency,discountRate}
-
     } catch(error:any) {
         console.log(`Failed to scrape product ${error.message}`);
     }
