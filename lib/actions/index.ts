@@ -62,3 +62,17 @@ export async function getProductById(productId:string) {
         throw new Error(`Failed to fetch product ${error.message}`);
     }
 }
+
+export async function getAllProducts() {
+
+    try{
+        connectToDb();
+
+        const products = await Product.find();
+
+        return products;
+
+    } catch(error:any) {
+        throw new Error(`Failed to fetch products ${error.message}`);
+    }
+}
