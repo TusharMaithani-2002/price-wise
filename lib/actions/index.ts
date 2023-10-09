@@ -76,3 +76,23 @@ export async function getAllProducts() {
         throw new Error(`Failed to fetch products ${error.message}`);
     }
 }
+
+export async function getSimilarProducts(productId:String) {
+    try {
+
+        connectToDb();
+
+        const currentProduct = await Product.findById(productId);
+
+        if(!currentProduct) return null;
+
+        const similarProducts = await Product.find({
+            _id: {$ne:productId}
+        }).limit(3);
+
+        return similarProducts;
+
+    } catch(error) {
+        console.log(error);
+    }
+}
