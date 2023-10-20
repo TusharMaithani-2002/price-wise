@@ -78,23 +78,23 @@ export const generateEmailBody = async (
 
   return { subject, body };
 };
-// smtp email protocol in nodemailer
-const transporter = nodemailer.createTransport({
-  pool: true,
-  service: "hotmail",
-  port: 2525,
-  secure:false,
-  auth: {
-    user: "tusharmaithani1234@gmail.com",
-    pass: process.env.EMAIL_PASSWORD,
-  },
-  maxConnections: 1,
-});
 
 export const sendEmail = async (
   emailContent: EmailContent,
   sentTo: string[]
 ) => {
+  // smtp email protocol in nodemailer
+  const transporter = nodemailer.createTransport({
+    pool: true,
+    service: "hotmail",
+    port: 2525,
+    secure: false,
+    auth: {
+      user: "tusharmaithani1234@gmail.com",
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    maxConnections: 1,
+  });
   const mailOptions = {
     from: "tusharmaithani1234@gmail.com",
     to: sentTo,
@@ -102,13 +102,14 @@ export const sendEmail = async (
     subject: emailContent.subject,
   };
 
+  console.log("sending email");
+  const mail = transporter.sendMail(mailOptions, (error: any, info: any) => {
+    if (error) {
+      console.log(error);
+    }
+    console.log("Email sent", info);
+  });
 
-    console.log("sending email");
-    transporter.sendMail(mailOptions, (error: any, info: any) => {
-      if (error) {
-        console.log(error);
-      }
-        console.log("Email sent", info);
-    });
-
+  console.log(mail);
+  return mail;
 };
